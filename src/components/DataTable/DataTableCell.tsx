@@ -14,6 +14,10 @@ type Props = $RemoveChildren<typeof TouchableRipple> & {
    */
   numeric?: boolean;
   /**
+   * The max number of lines the cell will have.
+   */
+  numberOfLines?: number;
+  /**
    * Function to execute on press.
    */
   onPress?: () => void;
@@ -24,14 +28,14 @@ class DataTableCell extends React.Component<Props> {
   static displayName = 'DataTable.Cell';
 
   render() {
-    const { children, style, numeric, ...rest } = this.props;
+    const { children, style, numeric, numberOfLines, ...rest } = this.props;
 
     return (
       <TouchableRipple
         {...rest}
         style={[styles.container, numeric && styles.right, style]}
       >
-        <Text numberOfLines={1}>{children}</Text>
+        <Text numberOfLines={numberOfLines ? numberOfLines : 1}>{children}</Text>
       </TouchableRipple>
     );
   }
